@@ -21,11 +21,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         password = attrs.get('password')
         password_confirmation = attrs.get('password_confirmation')
         if password != password_confirmation:
-            raise serializers.ValidationError("Password and Confirm Password doesn't match")
+            raise serializers.ValidationError("Error at serializer.py.Password and Confirm Password doesn't match")
+        print("Password and Confirm Password passed in serializer.userRegistrationSerializervalidate")
         return attrs
 
     def create(self, validated_data):
-        validated_data.pop('password_confirmation')
+        # validated_data.pop('password_confirmation')  # poping password confirmation from validation so that it do not acquire password confirmation field in database
         return User.objects.create_user(**validated_data)
 
 class UserLoginSerializer(serializers.ModelSerializer):
