@@ -1,0 +1,38 @@
+Example cURL Commands:
+
+    User Registration:
+
+    sh
+
+curl -X POST http://127.0.0.1:8000/api/register/ -d '{"email": "user@example.com", "password": "password123", "password2": "password123", "first_name": "John", "last_name": "Doe", "date_of_birth": "2000-01-01"}' -H "Content-Type: application/json"
+
+User Login:
+
+sh
+
+curl -X POST http://127.0.0.1:8000/api/login/ -d '{"email": "user@example.com", "password": "password123"}' -H "Content-Type: application/json"
+
+User Profile (authenticated):
+
+sh
+
+curl -X GET http://127.0.0.1:8000/api/profile/ -H "Authorization: Bearer <access_token>"
+
+Change Password (authenticated):
+
+sh
+
+curl -X POST http://127.0.0.1:8000/api/change-password/ -d '{"password": "newpassword123", "password2": "newpassword123"}' -H "Content-Type: application/json" -H "Authorization: Bearer <access_token>"
+
+Send Password Reset Email:
+
+sh
+
+curl -X POST http://127.0.0.1:8000/api/send-reset-password-email/ -d '{"email": "user@example.com"}' -H "Content-Type: application/json"
+
+Reset Password:
+
+sh
+
+    curl -X POST http://127.0.0.1:8000/api/reset-password/<uid>/<token>/ -d '{"password": "newpassword123", "password2": "newpassword123"}' -H "Content-Type: application/json"
+
